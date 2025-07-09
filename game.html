@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saga do Empreendedor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-wrapper">
+        <div id="coluna-esquerda">
+            <header>
+                <div class="header-principal">
+                    <h1>Saga do Empreendedor</h1>
+                    <button id="botao-loja-header">💎 Loja</button>
+                </div>
+                <div class="recursos-heroi">
+                    <div class="recurso-item" title="Dinheiro"><img src="coisas/moeda.png" alt="Moedas"> <span id="dinheiro">0</span></div>
+                    <div class="recurso-item" title="Marca"><img src="coisas/estrela.png" alt="Estrela"> <span id="marca-display">0</span></div>
+                </div>
+            </header>
+
+            <div id="arena-visual">
+                <div class="personagem-container" id="heroi-container">
+                    <div class="nome-personagem">Herói (Nível <span id="heroi-nivel">1</span>)</div>
+                    <img src="heroi/heroi2.png" alt="Herói" class="sprite">
+                    <div class="barra-container" title="Vida"><div class="barra-progresso barra-hp" id="heroi-hp-bar"></div></div>
+                    <span class="hp-texto">HP: <span id="heroi-hp-texto">100/100</span></span>
+                    <div class="barra-container" title="Energia"><div class="barra-progresso barra-energia" id="heroi-energia-bar"></div></div>
+                    <span class="energia-texto">Energia: <span id="heroi-energia-texto">50/50</span></span>
+                    <div class="barra-container" title="Experiência"><div class="barra-progresso barra-xp" id="heroi-xp-bar"></div></div>
+                    <span class="xp-texto">XP: <span id="heroi-xp-texto">0/50</span></span>
+                </div>
+                
+                <div class="personagem-container hidden" id="inimigo-container">
+                    <div class="nome-personagem" id="inimigo-nome"></div>
+                    <img src="" alt="Inimigo" class="sprite" id="inimigo-sprite">
+                    <div class="barra-container">
+                        <div class="barra-progresso barra-hp" id="inimigo-hp-bar"></div>
+                    </div>
+                    <span class="hp-texto">HP: <span id="inimigo-hp-texto"></span></span>
+                </div>
+            </div>
+            
+            <div id="combate-container">
+                <button id="botao-acao-principal">Procurar Inimigo</button>
+                <div id="combate-acoes" class="hidden">
+                    <button class="btn-habilidade" id="habilidade-ataque">Ataque Básico</button>
+                    <button class="btn-habilidade" id="habilidade-ataque-poderoso" title="Causa mais dano. Custo: 15 Energia">Ataque Poderoso</button>
+                    <button class="btn-habilidade" id="habilidade-usar-pocao" title="Usa 1 Poção de Cura do inventário">Usar Poção</button>
+                </div>
+            </div>
+
+            <div id="log-eventos"></div>
+        </div>
+
+        <div id="coluna-direita">
+            <div id="gestao-container">
+                <nav class="abas-navegacao">
+                    <div class="aba ativa" data-alvo="painel-equipamento">Equipamento</div>
+                    <div class="aba" data-alvo="painel-missoes">Missões</div>
+                    <div class="aba" data-alvo="painel-producao">Produção</div>
+                    <div class="aba" data-alvo="painel-contratacao">Vendedores</div>
+                </nav>
+
+                <div id="painel-equipamento" class="painel-conteudo">
+                    <h4>Equipamento Ativo</h4>
+                    <div id="slots-equipamento">
+                        <div class="slot-equipamento" id="slot-arma">
+                            <span class="nome-slot">Arma:</span> <span class="item-equipado">Nenhuma</span>
+                        </div>
+                        <div class="slot-equipamento" id="slot-armadura">
+                            <span class="nome-slot">Armadura:</span> <span class="item-equipado">Nenhuma</span>
+                        </div>
+                    </div>
+                    <h4>Inventário de Equipáveis</h4>
+                    <div id="inventario-equipaveis">
+                        <p>Produza itens para equipá-los aqui.</p>
+                    </div>
+                </div>
+
+                <div id="painel-missoes" class="painel-conteudo hidden"></div>
+                <div id="painel-producao" class="painel-conteudo hidden"></div>
+                <div id="painel-contratacao" class="painel-conteudo hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fundo-modal-loja" class="modal-fundo hidden">
+        <div id="modal-loja" class="modal-janela">
+            <div class="modal-cabecalho">
+                <h2>💎 Loja Premium</h2>
+                <button id="modal-botao-fechar" class="modal-fechar">&times;</button>
+            </div>
+            <div id="modal-corpo-loja" class="modal-corpo">
+                </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="loja.js"></script>
+</body>
+</html>

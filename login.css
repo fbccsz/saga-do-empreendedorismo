@@ -1,0 +1,85 @@
+/* Este CSS é específico para a página de login */
+
+body {
+    /* Garante que o fundo cubra toda a tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#login-container {
+    perspective: 1000px; /* Para um efeito 3D sutil no hover */
+}
+
+#login-box {
+    width: 400px;
+    padding: 40px;
+    background-color: var(--cor-painel-interno);
+    border: 5px solid var(--cor-borda-pedra);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: var(--cor-texto-escuro);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+#login-box:hover {
+    transform: rotateY(-5deg) rotateX(2deg);
+}
+
+#login-box h1 {
+    font-family: var(--fonte-titulo);
+    font-size: 3em;
+    color: var(--cor-destaque-laranja);
+    text-shadow: 1px 1px 2px var(--cor-borda-pedra);
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    font-family: var(--fonte-titulo);
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--cor-borda-pedra);
+    border-radius: 5px;
+    background-color: var(--cor-texto-claro);
+    font-size: 1.1em;
+    color: var(--cor-texto-escuro);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--cor-hp);
+    color: var(--cor-texto-claro);
+    border: 2px solid var(--cor-borda-pedra);
+    border-radius: 5px;
+    transition: all 0.2s;
+    font-family: var(--fonte-titulo);
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.login-footer {
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #555;
+    font-style: italic;
+}
