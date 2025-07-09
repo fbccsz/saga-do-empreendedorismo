@@ -1,7 +1,4 @@
-/* Este CSS é específico para a página de login */
-
 body {
-    /* Garante que o fundo cubra toda a tela */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +6,7 @@ body {
 }
 
 #login-container {
-    perspective: 1000px; /* Para um efeito 3D sutil no hover */
+    perspective: 1000px; /* Para um efeito 3D no hover */
 }
 
 #login-box {

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id="botao-mapa-flutuante" title="Abrir Mapa do Mundo">🗺️</button>
     <div id="game-wrapper">
         <div id="coluna-esquerda">
             <header>
@@ -93,11 +94,34 @@
                 <button id="modal-botao-fechar" class="modal-fechar">&times;</button>
             </div>
             <div id="modal-corpo-loja" class="modal-corpo">
-                </div>
+            </div>
         </div>
     </div>
+    <div id="fundo-modal-mapa" class="modal-fundo hidden">
+    <div id="modal-mapa" class="modal-janela">
+        <div class="modal-cabecalho">
+            <h2>Mapa do Mundo</h2>
+            <button id="mapa-botao-fechar" class="modal-fechar">&times;</button>
+        </div>
+        <div id="mapa-container" class="modal-corpo">
+            <img src="coisas/mapa.jpg" alt="Mapa do Mundo" class="mapa-imagem">
+            <div class="vila-pin" data-vila-id="floresta" style="top: 65%; left: 55%;">
+                <span>Vila da Floresta</span>
+            </div>
+            <div class="vila-pin" data-vila-id="montanha" style="top: 20%; left: 25%;">
+                <span>Posto da Montanha</span>
+            </div>
+            <div class="vila-pin" data-vila-id="litoral" style="top: 70%; left: 15%;">
+                <span>Vila do Litoral</span>
+            </div>
+            <div class="vila-pin" data-vila-id="deserto" style="top: 35%; left: 75%;">
+                <span>Oásis do Deserto</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="game.js"></script>
-    <script src="loja.js"></script>
+<script src="game.js"></script>
+<script src="loja.js"></script>
 </body>
 </html>

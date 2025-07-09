@@ -544,3 +544,61 @@ header h1 {
 .card-gestao button {
     background-color: var(--cor-destaque-laranja);
 }
+
+
+#botao-mapa-flutuante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--cor-destaque-laranja);
+    color: white;
+    border: 3px solid var(--cor-borda-pedra);
+    border-radius: 50%;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: all 0.2s ease;
+}
+
+#botao-mapa-flutuante:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+
+#mapa-container {
+    position: relative; 
+    padding: 0;
+    overflow: hidden;
+}
+
+.mapa-imagem {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.vila-pin {
+    position: absolute; 
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 215, 0, 0.8);
+    color: var(--cor-texto-escuro);
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 2px solid #a18a61;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap; 
+    transition: all 0.2s ease;
+}
+
+.vila-pin:hover {
+    transform: translate(-50%, -50%) scale(1.15)
+    background-color rgba(255, 215, 0, 1);
+    z-index: 10;
+}

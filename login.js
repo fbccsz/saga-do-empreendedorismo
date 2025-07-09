@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // salva os dados no navegador i pa
         localStorage.setItem('nomeHeroi', username);
 
-        // Redireciona o navegador para a página do jogo
+        // redireciona o navegador para a página do jogo
         window.location.href = 'game.html';
     });
 });
