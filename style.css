@@ -1,0 +1,546 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --fonte-titulo: 'MedievalSharp', cursive; 
+    --fonte-corpo: 'Roboto', sans-serif; 
+    --cor-fundo-principal: #3d2c1d; 
+    --cor-painel-pedra: #6c5f5b; 
+    --cor-painel-interno: #dcd0c0; 
+    --cor-texto-claro: #f5eadd; 
+    --cor-texto-escuro: #4a3f35; 
+    --cor-destaque-laranja: #ff8c00; 
+    --cor-destaque-azul: #4a90e2; 
+    --cor-borda-pedra: #2a1f17; 
+    --cor-hp: #4caf50; 
+    --cor-energia: #f1c40f; 
+    --cor-xp: #3498db; 
+    --cor-dano: #c0392b; 
+}
+
+* { box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body { font-family: var(--fonte-corpo); 
+    background-color: var(--cor-fundo-principal); 
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); 
+    color: var(--cor-texto-claro); 
+    -webkit-font-smoothing: antialiased; 
+}
+
+#game-wrapper { 
+    display: flex; 
+    max-width: 1400px; 
+    height: 95vh; 
+    min-height: 700px; 
+    margin: 2.5vh auto; 
+    background-color: var(--cor-painel-pedra); 
+    border: 5px solid var(--cor-borda-pedra); 
+    border-radius: 15px; 
+    box-shadow: 0 0 30px rgba(0,0,0,0.7), inset 0 0 15px rgba(0,0,0,0.5); 
+}
+
+#coluna-esquerda, #coluna-direita { 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+}
+
+#coluna-esquerda { 
+    width: 60%; 
+    border-right: 4px solid var(--cor-borda-pedra); 
+}
+
+#coluna-direita {
+    width: 40%; 
+}
+
+header { 
+    text-align: center; 
+    margin-bottom: 15px; 
+    flex-shrink: 0; 
+}
+
+.header-principal { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+header h1 { 
+    font-family: var(--fonte-titulo); 
+    font-size: 3em; 
+    color: var(--cor-destaque-laranja); 
+    text-shadow: 2px 2px 4px var(--cor-borda-pedra); 
+}
+
+#botao-loja-header { 
+    background-image: linear-gradient(to top, #f1c40f, #f39c12); color: white; font-family: var(--fonte-titulo); 
+    font-size: 1.5em; 
+    border: 2px solid var(--cor-borda-pedra); 
+    border-radius: 8px; padding: 5px 20px; 
+    cursor: pointer; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4); 
+    transition: all 0.2s ease; 
+    flex-shrink: 0; 
+}
+
+#botao-loja-header:hover { 
+    transform: scale(1.05); 
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); 
+}
+
+.recursos-heroi { 
+    display: flex; 
+    justify-content: space-around; 
+    background-color: rgba(0,0,0,0.3); 
+    padding: 10px; 
+    border-radius: 8px; 
+    margin-top: 10px; 
+}
+
+.recurso-item { 
+    font-size: 1.1em; 
+    font-weight: bold; 
+}
+
+.recurso-item img { 
+    vertical-align: middle; 
+    width: 24px; 
+    margin-right: 5px; 
+}
+
+#arena-visual { 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    padding: 10px; background: rgba(0,0,0,0.2); 
+    border-radius: 10px; 
+    border: 2px solid var(--cor-borda-pedra); 
+    margin-bottom: 15px; 
+    flex-shrink: 0; 
+}
+
+.personagem-container { 
+    text-align: center; 
+    width: 200px; 
+}
+
+.personagem-container.hidden { 
+    visibility: hidden; 
+}
+
+.nome-personagem { 
+    font-family: var(--fonte-titulo); 
+    font-size: 1.8em; 
+    color: var(--cor-texto-claro); 
+    height: 30px; 
+}
+
+.sprite { 
+    width: 128px; 
+    height: 128px; 
+    image-rendering: pixelated; 
+    margin: 5px 0; 
+    object-fit: contain; 
+}
+
+.hp-texto, .xp-texto, .energia-texto { 
+    font-size: 0.9em; 
+    font-weight: bold; 
+}
+
+.barra-container { 
+    width: 180px; 
+    height: 18px; 
+    background-color: #333; 
+    border-radius: 5px; 
+    margin: 5px auto; 
+    border: 1px solid #111; 
+    overflow: hidden; 
+}
+
+.barra-progresso { 
+    height: 100%; 
+    transition: width 0.5s ease; 
+}
+
+.barra-hp { 
+    background-color: var(--cor-hp); 
+}
+
+.barra-xp { 
+    background-color: var(--cor-xp); 
+}
+
+.barra-energia { 
+    background-color: var(--cor-energia); 
+}
+
+#combate-container { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    flex-shrink: 0; 
+}
+
+#botao-acao-principal { 
+    width: 60%; 
+    margin: 10px auto; 
+    padding: 15px; 
+    font-size: 1.2em; 
+    font-weight: bold; 
+    cursor: pointer; 
+    background-color: var(--cor-destaque-laranja); 
+    color: var(--cor-texto-claro); 
+    border: 2px solid var(--cor-borda-pedra);
+    border-radius: 5px; 
+    transition: all 0.2s; 
+    font-family: var(--fonte-titulo); 
+}
+
+#botao-acao-principal.hidden { 
+    display: none; 
+}
+
+#botao-acao-principal:hover { 
+    transform: scale(1.05); 
+}
+
+#botao-acao-principal:disabled { 
+    background-color: #888; 
+    cursor: not-allowed; 
+}
+
+#combate-acoes { 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    width: 100%; 
+    margin-top: 10px; 
+}
+
+#combate-acoes.hidden { 
+    display: none; 
+}
+
+.btn-habilidade { 
+    flex-grow: 1; 
+    padding: 12px 5px; 
+    font-size: 1em; 
+    font-weight: bold; 
+    cursor: pointer; 
+    background-color: var(--cor-destaque-azul); 
+    color: var(--cor-texto-claro); 
+    border: 2px solid var(--cor-borda-pedra); 
+    border-radius: 5px; 
+    transition: all 0.2s; 
+    white-space: nowrap; 
+}
+
+.btn-habilidade:hover { 
+    transform: scale(1.05); 
+}
+
+.btn-habilidade:disabled { 
+    background-color: #888;
+    cursor: not-allowed; 
+    border-color: #555; 
+    transform: none; 
+}
+
+#log-eventos { 
+    flex-grow: 1; 
+    background-color: var(--cor-painel-interno); 
+    color: var(--cor-texto-escuro); 
+    border: 3px solid var(--cor-borda-pedra); 
+    border-radius: 8px; 
+    padding: 10px; 
+    overflow-y: auto; 
+    font-size: 0.9em; 
+    margin-top: 15px; 
+}
+
+#log-eventos p { 
+    margin-bottom: 5px; 
+    border-bottom: 1px solid rgba(0,0,0,0.1); 
+    padding-bottom: 3px; 
+}
+
+#log-eventos p.dano {
+     color: var(--cor-dano); 
+     font-weight: bold; 
+}
+
+#log-eventos p.ganho { 
+    color: var(--cor-hp); 
+    font-weight: bold; 
+}
+
+#log-eventos p.levelup {
+    color: #8e44ad; 
+    font-size: 1.1em; 
+    font-weight: bold; 
+    text-align: center; 
+    background-color: rgba(142, 68, 173, 0.1); 
+    border-radius: 5px; padding: 5px; 
+    border-top: 2px solid #8e44ad; 
+    border-bottom: 2px solid #8e44ad; 
+}
+
+#gestao-container { 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    background-color: var(--cor-painel-interno); 
+    border: 3px solid var(--cor-borda-pedra); 
+    border-radius: 8px; 
+    color: var(--cor-texto-escuro); 
+    overflow: hidden; 
+}
+
+.abas-navegacao { 
+    display: flex; 
+    border-bottom: 3px solid var(--cor-borda-pedra); 
+    flex-shrink: 0; 
+}
+
+.aba { 
+    padding: 10px 15px; 
+    cursor: pointer; 
+    font-size: 1.1em; 
+    font-weight: bold; 
+    background-color: var(--cor-painel-pedra); 
+    color: var(--cor-texto-claro); 
+    border-right: 3px solid var(--cor-borda-pedra); 
+    font-family: var(--fonte-titulo); 
+    text-align: center; 
+    flex-grow: 1; 
+}
+
+.aba.ativa { 
+    background-color: var(--cor-painel-interno); 
+    color: var(--cor-texto-escuro); 
+    border-bottom: 3px solid var(--cor-painel-interno); 
+    margin-bottom: -3px; 
+}
+
+.painel-conteudo { 
+    padding: 15px; 
+    overflow-y: auto; 
+    flex-grow: 1; 
+}
+
+.painel-conteudo.hidden { 
+    display: none; 
+}
+
+.card-gestao, .card-missao, .card-pacote, .card-equipavel, .slot-equipamento { 
+    background-color: #c9bbae; 
+    padding: 15px; 
+    border-radius: 8px; 
+    margin-bottom: 15px; 
+    border: 1px solid var(--cor-texto-escuro); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+}
+
+.card-gestao h4, .card-missao h4, #painel-equipamento h4, #painel-loja h4 { 
+    font-family: var(--fonte-titulo); 
+    font-size: 1.6em; 
+    color: var(--cor-texto-escuro); 
+    border-bottom: 2px solid var(--cor-borda-pedra); 
+    margin-bottom: 10px; 
+    padding-bottom: 5px; 
+}
+
+.card-gestao button, .card-missao button, .card-pacote button, #inventario-equipaveis .card-equipavel button { 
+    width: 100%; 
+    padding: 10px; 
+    margin-top: 10px; 
+    border: 2px solid var(--cor-borda-pedra); 
+    color: white; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    font-size: 1em; 
+    transition: all 0.2s; 
+}
+
+.card-gestao button:hover, .card-missao button:hover, .card-pacote button:hover, #inventario-equipaveis .card-equipavel button:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+}
+
+.card-missao.concluida { 
+    background-color: #a3b9a3; 
+    border-color: var(--cor-hp); 
+}
+
+.card-missao p { 
+    margin: 5px 0; 
+}
+
+.card-missao .progresso-missao { 
+    font-style: italic; 
+    color: #555; 
+}
+
+.card-missao .recompensa-missao { 
+    font-weight: bold; 
+    color: #3a5335; 
+}
+
+.card-missao button.btn-iniciar { 
+    background-color: var(--cor-destaque-azul); 
+}
+
+.card-missao button.btn-entregar { 
+    background-color: var(--cor-hp); 
+}
+
+.card-missao button:disabled { 
+    background-color: #888; 
+    cursor: not-allowed; 
+    border-color: #555; 
+    transform: none; 
+    box-shadow: none;
+}
+
+#inventario-equipaveis .card-equipavel { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+#inventario-equipaveis .card-equipavel button { 
+    width: auto; 
+    margin-top: 0; 
+    padding: 5px 15px; 
+    background-color: var(--cor-hp); 
+}
+
+.card-pacote { text-align: center; 
+    background-color: #e8e0d4; 
+    border-color: #a18a61; 
+}
+
+.card-pacote .icone-pacote { 
+    font-size: 3em; 
+}
+
+.card-pacote .moedas-pacote { 
+    font-family: var(--fonte-titulo); 
+    font-size: 2.2em; color: var(--cor-texto-escuro); 
+    margin: 10px 0; 
+}
+
+.card-pacote .preco-pacote { 
+    font-size: 1.2em; 
+    font-weight: bold; color: var(--cor-hp); 
+    background-color: rgba(0,0,0,0.1); 
+    padding: 5px 10px; 
+    border-radius: 20px; 
+    display: inline-block; 
+}
+
+.card-pacote .btn-comprar { 
+    background-image: linear-gradient(to bottom, #f1c40f, #e67e22); 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
+}
+
+.card-pacote .btn-comprar:hover { 
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); 
+}
+
+.slot-equipamento { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.nome-slot { 
+    font-weight: bold; 
+}
+
+.item-equipado { 
+    font-style: italic; 
+}
+
+
+/* Estilos para o Modal da Loja */
+.modal-fundo { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 1000; display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+    pointer-events: none; 
+}
+
+.modal-fundo.hidden { 
+    display: none; 
+}
+
+.modal-fundo:not(.hidden) { 
+    opacity: 1; 
+    pointer-events: all; 
+}
+
+.modal-janela { 
+    background-color: var(--cor-painel-interno); 
+    color: var(--cor-texto-escuro); 
+    padding: 20px; 
+    border-radius: 10px; 
+    border: 4px solid var(--cor-destaque-laranja); 
+    width: 90%; 
+    max-width: 600px; 
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5); 
+    transform: scale(0.95); 
+    transition: transform 0.3s ease; 
+}
+
+.modal-fundo:not(.hidden) .modal-janela { 
+    transform: scale(1); 
+}
+
+.modal-cabecalho { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 2px solid var(--cor-borda-pedra); 
+    padding-bottom: 10px; 
+    margin-bottom: 20px; 
+}
+
+.modal-cabecalho h2 { 
+    font-family: var(--fonte-titulo); 
+    font-size: 2.5em; 
+    color: var(--cor-destaque-laranja); 
+}
+
+.modal-fechar { 
+    background: none; 
+    border: none; 
+    font-size: 3em; 
+    color: var(--cor-texto-escuro); 
+    cursor: pointer; 
+    line-height: 1; 
+}
+
+.modal-corpo { 
+    max-height: 60vh; 
+    overflow-y: auto; 
+}
+
+.card-gestao button {
+    background-color: var(--cor-destaque-laranja);
+}
