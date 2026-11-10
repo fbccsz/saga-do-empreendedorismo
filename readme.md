@@ -1,5 +1,7 @@
 # Saga do Empreendedorismo
 
+**Status:** Experimento de jogo web.
+
 Experimento de jogo web que combina exploração, combate e gerenciamento de recursos. O jogador evolui um personagem enquanto organiza produção, equipamentos, missões e vendedores.
 
 **[Jogar demonstração](https://fbccsz.github.io/saga-do-empreendedorismo/)** · **[Portfólio](https://www.yshdev.me/#projects)**
@@ -46,6 +48,7 @@ Abra `http://localhost:8000`, escolha o nome do personagem e inicie a jornada. N
 
 A demonstração utiliza GitHub Pages. A automação de publicação está em `.github/workflows/static.yml`.
 
----
+## Manutenção
 
-Desenvolvido por [Fabrício Silva · ysh](https://www.yshdev.me/).
+Mantido por **ysh** · [Portfólio](https://www.yshdev.me/) · [Contato](mailto:yshdev@outlook.com)
+
